@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+    <title>Upload new File</title>
+    {% if no_faces %}
+    <h1>Faces could not be detected in the Uploaded photo, please try again (Try using a different ange or a new photo)</h1>
+    {% endif %}
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+    </form>
+</html>
