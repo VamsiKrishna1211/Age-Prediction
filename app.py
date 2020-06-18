@@ -35,7 +35,7 @@ image_filename = ""
 
 web_app = Flask(__name__)
 web_app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
+web_app.config['SECRET_KEY'] = 'someRandomKey'
 
 def allowed_file(filename):
     return '.' in filename and \
