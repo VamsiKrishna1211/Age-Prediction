@@ -9,10 +9,8 @@ from tensorflow.python.keras.models import load_model
 #from tensorflow.python.keras.backend import set_session
 from tensorflow import keras
 
-import csv
 import cv2
 import numpy as np
-from tqdm.auto import tqdm
 import sys
 
 #session = keras.backend.get_session()
@@ -25,11 +23,11 @@ keras.backend.set_session(session)
 # session = keras.backend.get_session()
 # init = tf.global_variables_initializer()
 # session.run(init)
-model = load_model_weights("/home/vamsik1211/Data/git-repos/Age-Prediction/imdb_age_recog_acc_85_resnet50_15_classes_weights.h5")
+model = load_model_weights("./imdb_age_recog_acc_85_resnet50_15_classes_weights.h5")
 
 
-UPLOAD_FOLDER = "/home/vamsik1211/Data/git-repos/Age-Prediction/images_upload"
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+UPLOAD_FOLDER = "./images_upload"
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 no_faces = False
 image_filename = ""
 
@@ -51,8 +49,8 @@ def predict_age():
     global graph
     with graph.as_default():
         keras.backend.set_session(session)
-        img = cv2.imread("/home/vamsik1211/Data/git-repos/Age-Prediction/images_upload/{}".format(image_filename))
-        os.remove("/home/vamsik1211/Data/git-repos/Age-Prediction/images_upload/{}".format(image_filename))
+        img = cv2.imread("./images_upload/{}".format(image_filename))
+        os.remove("./images_upload/{}".format(image_filename))
         print(image_filename+"printed")
         # if len(img) == 0:
         #     raise "Image path not valid"
@@ -63,6 +61,7 @@ def predict_age():
             print("Entered all_faces check if")
             return redirect(url_for(".upload_file"))
         print("Entering for loop")
+        no_faces = False
         for bb_data in all_faces_bb_data:
             crp_image = Get_Croped_image(img, bb_data)
             crp_image = image_resize_and_preprocessing(crp_image, (224,224))
@@ -74,10 +73,9 @@ def predict_age():
             pred_age_range = age_class_to_age_range(pred_class)
             isinstance(pred_age_range, str)
             img = draw_rect_put_text(img, bb_data, pred_age_range)
-        cv2.imwrite("/home/vamsik1211/Data/git-repos/Age-Prediction/static/"+image_filename.split(".")[0]+"mod."+image_filename.split(".")[1], img)
+        cv2.imwrite("./static/"+image_filename.split(".")[0]+"mod."+image_filename.split(".")[1], img)
 
-    return render_template("test.html", image_show_path=image_filename.split(".")[0]+"mod."+image_filename.split(".")[1])
-    #return render_template("test.html", image_show_path="02-still-for-america-room-loop-superJumbo.jpg")#+image_filename.split(".")[0]+"mod"+image_filename.split(".")[1])
+    return render_template("predict.html", image_show_path=image_filename.split(".")[0]+"mod."+image_filename.split(".")[1])
 
 
 
@@ -105,3 +103,6 @@ def upload_file():
 
     return render_template("index.html", no_faces=no_faces)
 
+
+if __name__ == "__main__":
+    web_app.run(host='192.168.0.107')

@@ -1,12 +1,18 @@
 <!doctype html>
 <html>
-    <title>Upload new File</title>
+    <title>Age Predictor</title>
     {% if no_faces %}
-    <h1>Faces could not be detected in the Uploaded photo, please try again (Try using a different ange or a new photo)</h1>
+    <h1>Faces could not be detected in the Uploaded photo, please try again (Try using a different angle or a new photo)</h1>
     {% endif %}
-    <h1>Upload new File</h1>
+
+    {% if not no_faces %}
+        <h1>Human Age predictor using face Data</h1>
+    {% endif %}
+    <h3>Upload an Image</h3>
+    <h3>Upload an Image with a clear face and try to avoid adding fiters to the Image</h3>
     <form method=post enctype=multipart/form-data>
         <input type=file name=file>
         <input type=submit value=Upload>
     </form>
+    <p><a href="https://github.com/VamsiKrishna1211/Age-Prediction" target="_blank" id="SourceCode">Click Here</a> for Source Code</p>
 </html>

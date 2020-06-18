@@ -1,16 +1,13 @@
 <!doctype html>
 <html>
     <title>Age Predictions</title>
-    <h1>Page render Successsful</h1>
-    <center>
-        <h2>Image with faces</h2>
-        <img src="{{ url_for('static', filename=image_show_path) }}" height="50%" width="50%"/>
-    </center>
-
-
+    <h1>Age Prediction Successsful</h1>
     <h1>Click the below button to upload Image again</h1>
-    <!--<a href="/" id="index_btn">Upload Page</a>-->
     <form method="get" action="/">
         <button type="submit">Upload again!</button>
     </form>
+    <center>
+        <h2>Image with Ages</h2>
+        <img src="{{ url_for('static', filename=image_show_path) }}" height="50%" width="50%"/>
+    </center>
 </html>
