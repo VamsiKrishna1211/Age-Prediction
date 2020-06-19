@@ -106,7 +106,7 @@ def upload_file():
             image_filename = filename
             file.save(os.path.join(web_app.config["UPLOAD_FOLDER"], filename))
             print("Success")
-            return predict_age()#redirect(url_for(".predict_age", _external=True))
+            return predict_age()#redirect(url_for("predict_age", _external=True))#
         else:
             print("file name none")
 
