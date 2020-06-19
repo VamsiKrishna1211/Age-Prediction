@@ -43,6 +43,8 @@ def allowed_file(filename):
 
 
 
+
+
 @web_app.route("/predict_age", methods=["GET", "POST"])
 def predict_age():
     global session
@@ -84,25 +86,33 @@ def upload_file():
     print("Start")
     #global no_faces
     if request.method == "POST":
+        print("entered post")
         if "file" not in request.files:
+            print("no file part")
             flash("No file part")
             return redirect(request.url)
         file = request.files["file"]
+        print(request.files)
 
         if file.filename == "":
+            print("no file")
             flash("No file given")
             return redirect(request.url)
 
         if file and allowed_file(file.filename):
+            print("all cond satisfied")
             filename = secure_filename(file.filename)
             global image_filename
             image_filename = filename
             file.save(os.path.join(web_app.config["UPLOAD_FOLDER"], filename))
             print("Success")
-            return redirect(url_for("predict_age"))
+            return predict_age()#redirect(url_for(".predict_age", _external=True))
+        else:
+            print("file name none")
 
     return render_template("index.html", no_faces=no_faces)
 
 
 if __name__ == "__main__":
-    web_app.run(host='192.168.0.107')
+    #web_app.run(host='192.168.0.107')
+    web_app.run(host='0.0.0.0')
