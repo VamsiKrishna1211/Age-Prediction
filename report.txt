@@ -1,0 +1,26 @@
+TensorFlow 2.0 Upgrade Script
+-----------------------------
+Converted 1 files
+Detected 1 issues that require attention
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+File: app.py
+--------------------------------------------------------------------------------
+app.py:107:12: WARNING: *.save requires manual check. (This warning is only applicable if the code saves a tf.Keras model) Keras model.save now saves to the Tensorflow SavedModel format by default, instead of HDF5. To continue saving to HDF5, add the argument save_format='h5' to the save() function.
+================================================================================
+Detailed log follows:
+
+================================================================================
+--------------------------------------------------------------------------------
+Processing file 'app.py'
+ outputting to 'app_tf2.py'
+--------------------------------------------------------------------------------
+
+17:9: INFO: Renamed 'tf.ConfigProto' to 'tf.compat.v1.ConfigProto'
+19:10: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+20:8: INFO: Renamed 'tf.get_default_graph' to 'tf.compat.v1.get_default_graph'
+21:0: INFO: Renamed 'tf.keras.backend.set_session' to 'tf.compat.v1.keras.backend.set_session'
+53:8: INFO: Renamed 'tf.keras.backend.set_session' to 'tf.compat.v1.keras.backend.set_session'
+107:12: WARNING: *.save requires manual check. (This warning is only applicable if the code saves a tf.Keras model) Keras model.save now saves to the Tensorflow SavedModel format by default, instead of HDF5. To continue saving to HDF5, add the argument save_format='h5' to the save() function.
+--------------------------------------------------------------------------------
+

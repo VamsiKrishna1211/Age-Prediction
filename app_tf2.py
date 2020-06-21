@@ -14,16 +14,17 @@ import numpy as np
 import sys
 
 #session = keras.backend.get_session()
-config = tf.ConfigProto()
+config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
-session = tf.Session(config=config)
-graph = tf.get_default_graph()
-tf.keras.backend.set_session(session)
+session = tf.compat.v1.Session(config=config)
+graph = tf.compat.v1.get_default_graph()
+tf.compat.v1.keras.backend.set_session(session)
 
 # session = keras.backend.get_session()
 # init = tf.global_variables_initializer()
 # session.run(init)
-model = load_model_weights("./imdb_age_recog_acc_85_resnet50_15_classes_weights.h5")
+with graph.as_default():
+    model = load_model_weights("./imdb_age_recog_acc_85_resnet50_15_classes_weights.h5")
 
 
 UPLOAD_FOLDER = "./images_upload"
@@ -50,7 +51,7 @@ def predict_age():
     global session
     global graph
     with graph.as_default():
-        tf.keras.backend.set_session(session)
+        tf.compat.v1.keras.backend.set_session(session)
         img = cv2.imread("./images_upload/{}".format(image_filename))
         os.remove("./images_upload/{}".format(image_filename))
         print(image_filename+"printed")
