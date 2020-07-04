@@ -7,7 +7,9 @@
         <button type="submit">Upload again!</button>
     </form>
     <center>
-        <h2>Image with Ages</h2>
+
+        <h2>Your Image with Age(s) predicted</h2>
+        <p>Number of faces Detected: {{ num_faces }}</p>
         <img src="{{ url_for('static', filename=image_show_path) }}" height="50%" width="50%"/>
     </center>
 </html>

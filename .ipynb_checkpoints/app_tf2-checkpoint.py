@@ -18,7 +18,6 @@ config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
 session = tf.compat.v1.Session(config=config)
 graph = tf.compat.v1.get_default_graph()
-
 tf.compat.v1.keras.backend.set_session(session)
 
 # session = keras.backend.get_session()
@@ -32,7 +31,6 @@ UPLOAD_FOLDER = "./images_upload"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 no_faces = False
 image_filename = ""
-num_faces = 0
 
 
 
@@ -42,7 +40,7 @@ web_app.config['SECRET_KEY'] = 'someRandomKey'
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[-1].lower() in ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 
@@ -67,22 +65,20 @@ def predict_age():
             return redirect(url_for(".upload_file"))
         print("Entering for loop")
         no_faces = False
-        global num_faces
-        num_faces = len(all_faces_bb_data)
         for bb_data in all_faces_bb_data:
             crp_image = Get_Croped_image(img, bb_data)
             crp_image = image_resize_and_preprocessing(crp_image, (224,224))
             print(crp_image.shape)
             pred_class_values = model.predict(crp_image)
             pred_class = int(np.squeeze(np.argmax(pred_class_values,axis=1)))
-            if pred_class != 0 and pred_class < 8:
+            if pred_class != 0:
                 pred_class -= 1
             pred_age_range = age_class_to_age_range(pred_class)
             isinstance(pred_age_range, str)
             img = draw_rect_put_text(img, bb_data, pred_age_range)
-        cv2.imwrite("./static/"+image_filename.split(".")[0]+"mod."+image_filename.split(".")[-1], img)
+        cv2.imwrite("./static/"+image_filename.split(".")[0]+"mod."+image_filename.split(".")[1], img)
 
-    return render_template("predict.jinja", image_show_path=image_filename.split(".")[0]+"mod."+image_filename.split(".")[-1], num_faces=num_faces)
+    return render_template("predict.html", image_show_path=image_filename.split(".")[0]+"mod."+image_filename.split(".")[1])
 
 
 

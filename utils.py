@@ -29,6 +29,8 @@ def image_resize_and_preprocessing(img, img_shape):
     img = img[np.newaxis, ...]
     return img
 
+
+
 def age_class_to_age_range(key):
     if not (isinstance(key, int)):
         raise TypeError
@@ -56,7 +58,7 @@ def age_class_to_age_range(key):
             raise "Value not in proper range of the dictionary keys"
 def draw_rect_put_text(img, bb_data, age_range):
     img = cv2.rectangle(img, (bb_data[0], bb_data[1]), ((bb_data[0]+bb_data[2]), (bb_data[1]+bb_data[3])), (0,0,255), 4)
-    img = cv2.putText(img, str(age_range), (bb_data[0], bb_data[1]-10), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0,23,193), 4)
+    img = cv2.putText(img, str(age_range), (bb_data[0], bb_data[1]-10), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0,23,193), 3)
     return img
 
 if __name__ == "__main__":
