@@ -9,11 +9,12 @@
     >For Ubuntu or Debian based systems run $ `sudo apt-get update && sudo apt-get install -y python3-pip && sudo pip3 install virtualenv`" 
 
     >For Arch linux based systems run $ `sudo pacman -Syyu && pip install --user virtualenv`
-3. Use `virtualenv --python=$(which python3.7) age-prediction-server`
+3. Use `virtualenv --python=$(which python3.7) age-prediction-server` to create the virtual environment
     >Mini-conda or Anaconda users can use `conda create -n age-prediction-server python=3.7 anaconda` (usage of python-3.7 is preferable)
 
     >`age-prediction-server` can be replaced with your preferred environment name.
 4. Use `source <path-to-age-predicton-server>/bin/activate` to start the virtual environment
+    >Mini-conda or Anaconda users use `conda activate <name-of-the-environment>`
 5. Run `pip install -r requirements.txt` to install the dependencies into the environment.
 6. Go to the Repository cloned location.
 7. To start the server run `gunicorn --bind 0.0.0.0:5000 --workers=1 gunicorn_launch_tf2:web_app --log-level=debug`
@@ -32,4 +33,7 @@
     >![Welcome Page](https://github.com/VamsiKrishna1211/Age-Prediction/blob/master-tf2/Welcome_page.png?raw=true)
 * Here is the "Results page" after predicting the ages of the faces in the image.
     >![Predction page](https://github.com/VamsiKrishna1211/Age-Prediction/blob/master-tf2/Image_prediced_page.png?raw=true)
+
+* To run the host the website over heroku checkout my [Flask-reverse-proxy-server](https://github.com/VamsiKrishna1211/Flask-reverse-proxy-server) repository to route the traffic from heroku-platform to the Age-predictor-server (or any server) and back. (Reverse proxy server can be used to keep your main server address hidden from public eyes.)
+  
 *Note: Image used for prediction is obtained from "Google images"*
