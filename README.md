@@ -5,7 +5,7 @@
 
 ## Installing
 1. Clone the repository into the desired location.
-2. For linux systems install *virtualenv* to prevent breaking.
+2. For linux systems install *virtualenv* to prevent breaking of the system.
     >For Ubuntu or Debian based systems run $ `sudo apt-get update && sudo apt-get install -y python3-pip && sudo pip3 install virtualenv`" 
 
     >For Arch linux based systems run $ `sudo pacman -Syyu && pip install --user virtualenv`
@@ -27,7 +27,7 @@
 
 * The age prediction model has been trained on [IMDB faces only dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/), it is publicly available with Age, gender, etc. classes.
 * The model is based on Resnet50 architecture with a custom output layer of fifteen classes and each class predicting it's respective age range.
-* The model can predict with an accuracy of 85%.
+* The model is able to predict with an accuracy of 85% on part of the [WIKI dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/).
 * The server is capable of detecting and predicting ages of multiple faces in the uploaded Image.
 * Here is the Welcome page of the server.
     >![Welcome Page](https://github.com/VamsiKrishna1211/Age-Prediction/blob/master-tf2/Welcome_page.png?raw=true)
