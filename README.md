@@ -27,7 +27,7 @@
 
 * The age prediction model has been trained on [IMDB faces only dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/), it is publicly available with Age, gender, etc. classes.
 * The model is based on Resnet50 architecture with a custom output layer of fifteen classes and each class predicting it's respective age range.
-* The model is able to predict with an accuracy of 85% on part of the [WIKI dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/).
+* When tested once with random selection of 1000 images from [WIKI dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/), the model predicted with an accuracy of nearly 85%.
 * The server is capable of detecting and predicting ages of multiple faces in the uploaded Image.
 * Here is the Welcome page of the server.
     >![Welcome Page](https://github.com/VamsiKrishna1211/Age-Prediction/blob/master-tf2/Welcome_page.png?raw=true)
