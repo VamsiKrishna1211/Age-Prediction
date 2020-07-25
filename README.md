@@ -34,6 +34,6 @@
 * Here is the "Results page" after predicting the ages of the faces in the image.
     >![Predction page](https://github.com/VamsiKrishna1211/Age-Prediction/blob/master-tf2/Image_prediced_page.png?raw=true)
 
-* To run the host the website over heroku checkout my [Flask-reverse-proxy-server](https://github.com/VamsiKrishna1211/Flask-reverse-proxy-server) repository to route the traffic from heroku-platform to the Age-predictor-server (or any server) and back. (Reverse proxy server can be used to keep your main server address hidden from public eyes.)
+* To host the website over heroku checkout my [Flask-reverse-proxy-server](https://github.com/VamsiKrishna1211/Flask-reverse-proxy-server) repository to route the traffic from heroku-platform to the Age-predictor-server (or any server) and back. (Reverse proxy server can be used to keep your main server address hidden from public eyes.)
   
 *Note: Image used for prediction is obtained from "Google images"*
